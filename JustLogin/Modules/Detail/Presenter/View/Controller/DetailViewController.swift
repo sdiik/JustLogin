@@ -1,15 +1,7 @@
-//
-//  DetailViewController.swift
-//  Games
-//
-//  Created by ahmad shiddiq on 15/08/23.
-//
-
 import Foundation
 import UIKit
 
 class DetailViewController: UIViewController {
-    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var detailTableView: UITableView! {
         didSet {
             detailTableView.delegate = self

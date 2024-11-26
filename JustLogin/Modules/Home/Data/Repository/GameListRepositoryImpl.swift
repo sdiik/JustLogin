@@ -1,10 +1,3 @@
-//
-//  GameListRepositoryImpl.swift
-//  Games
-//
-//  Created by ahmad shiddiq on 15/08/23.
-//
-
 import Foundation
 
 class GameListRepositoryImpl: GameListRepository {
@@ -23,8 +16,7 @@ class GameListRepositoryImpl: GameListRepository {
             result(.failure(.loading))
             return
         }
-        
-        print("================ url ============= \(url)")
+
         networkRepository.fetchRequest(url) { networkResult in
             switch networkResult {
             case .success(let response):
@@ -33,7 +25,6 @@ class GameListRepositoryImpl: GameListRepository {
                     result(.failure(.loading))
                     return
                 }
-                print("resultDecode ==============d===== \(data)")
                 self.parse(data: data, result: result)
             case .failure:
                 result(.failure(.loading))
@@ -44,7 +35,6 @@ class GameListRepositoryImpl: GameListRepository {
         do {
             
             let resultDecode = try JSONDecoder().decode([GameItemDataModel].self, from: data)
-            print("resultDecode ==================== \(resultDecode)")
             result(.success(resultDecode))
         } catch {
             result(.failure(.parsing))
